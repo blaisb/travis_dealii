@@ -1,9 +1,9 @@
-#language: cpp
+language: cpp
 
-#dist: trusty
+dist: trusty
 
-#os:
-#- linux
+os:
+- linux
 
 services:
 -docker
