@@ -1,25 +1,32 @@
-language: cpp
+#language: cpp
 
-dist: trusty
+#dist: trusty
 
-os:
-- linux
+#os:
+#- linux
 
-compiler: 
-- gcc
+services:
+-docker
+
 before_install:
-  - sudo apt-get update
-  - sudo apt-get install openmpi-bin
-  - sudo apt-get install libopenmpi-dev
+docker pull dealii/dealii
+
 
 script:
     ############################################################################
     # Build 
     ############################################################################
-     - mkdir -p dealii
-     - cd dealii
-     - git clone https://github.com/dealii/dealii.git
-     - mkdir -p build
-     - cd build
-     - cmake ${CMAKE_OPTIONS} -DCMAKE_CXX_FLAGS=${CXX_FLAGS} -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTS=ON ../dealii
-     - make -j4
+
+    # Download and compile p4est
+     #- mkdir p4est
+     #- cd p4est
+     #- wget https://www.dealii.org/9.0.0/external-libs/p4est-setup.sh
+     #- bash p4est-setup.sh
+     #- cd ..
+     #- mkdir -p dealii
+     #- cd dealii
+     #- git clone https://github.com/dealii/dealii.git
+     #- mkdir -p build
+     #- cd build
+     #- cmake -DDEAL_II_WITH_MPI=ON -DDEAL_II_COMPILE_EXAMPLES=OFF ../dealii
+     #- #make -j4
