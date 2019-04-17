@@ -1,0 +1,25 @@
+language: cpp
+
+dist: trusty
+
+os:
+- linux
+
+compiler: 
+- gcc
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install openmpi-bin
+  - sudo apt-get install libopenmpi-dev
+
+script:
+    ############################################################################
+    # Build 
+    ############################################################################
+     - mkdir -p dealii
+     - cd dealii
+     - git clone https://github.com/dealii/dealii.git
+     - mkdir -p build
+     - cd build
+     - cmake ${CMAKE_OPTIONS} -DCMAKE_CXX_FLAGS=${CXX_FLAGS} -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTS=ON ../dealii
+     - make
